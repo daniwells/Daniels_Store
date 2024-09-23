@@ -1,0 +1,10 @@
+<main>
+    <div>
+        <app-navbar></app-navbar>
+        <app-image-adcontainer></app-image-adcontainer>
+        <div class="products">
+            <app-filters-products-container (categorySent)="receiveCategory($event)" ></app-filters-products-container>
+            <app-content-container [categoryCurrent]="categoryCurrent" ></app-content-container>
+        </div>
+    </div>
+</main>

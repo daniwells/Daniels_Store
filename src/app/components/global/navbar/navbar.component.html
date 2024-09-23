@@ -1,0 +1,43 @@
+<div class="navbarContainer" >
+    <div class="navbarContainer__logoSection">
+        <div>
+            <img src="icons/home/logo.png" alt="">
+            <p><span>Daniel's</span> Store</p>
+        </div>
+    </div>
+    <div class="navbarContainer__searchSection">
+        <input 
+            type="search" 
+            name="search" 
+            id="search" 
+            placeholder="Search your preferred items here"
+        >
+    </div>
+    <div class="navbarContainer__navSection">
+        <img 
+            src="icons/navbar/casa.png" 
+            alt="Home icon"
+            (mouseover)="hoverIcons($event.target,'icons/navbar/casa-hover.png')"
+            (mouseout)="hoverIcons($event.target,'icons/navbar/casa.png')"
+            (click)="redirect('/')"
+        >
+        <div class="navbarContainer__navSection__cartContainer">
+            <p>1</p>
+            <img 
+                src="icons/home/carrinho-de-compras.png" 
+                alt="Buy cart icon"
+                (mouseover)="hoverIcons($event.target,'icons/home/carrinho-de-compras-hover.png')"
+                (mouseout)="hoverIcons($event.target,'icons/home/carrinho-de-compras.png')"
+                (click)="redirect('cart')"
+            >
+        </div>
+        <div class="navbarContainer__navSection__line"></div>
+        <img 
+            src="icons/home/saida.png" 
+            alt="Logout icon"
+            (mouseover)="hoverIcons($event.target,'icons/home/saida-hover.png')"
+            (mouseout)="hoverIcons($event.target,'icons/home/saida.png')"
+            (click)="redirect('/login')"
+        >
+    </div>
+</div>

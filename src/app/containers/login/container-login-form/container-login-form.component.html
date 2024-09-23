@@ -1,0 +1,14 @@
+<section class="containerLogin">
+    <form class="containerLogin__form" method="POST" >
+        <!-- <div class="containerLogin__backgroundForm"></div> -->
+        <h1>Welcome Again!</h1>
+        <p>Already have an account? <span>Do register</span></p>
+        
+        <app-input-login [type]="'text'" [formControl]="form.controls.username" [placeholder]="'Enter your username here'" [label]="'Username'"></app-input-login>
+        <app-input-login [type]="'password'" [formControl]="form.controls.password" [placeholder]="'Enter your password here'" [label]="'Password'"></app-input-login>
+
+        <div class="containerLogin__form__submitContainer" >
+            <input (click)="logar()" type="submit" value="Login">
+        </div>
+    </form>
+</section>

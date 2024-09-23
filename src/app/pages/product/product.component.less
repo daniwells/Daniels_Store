@@ -1,0 +1,129 @@
+@import "../../../styles.less";
+
+main{
+    min-height: 100vh;
+    background-color: @dark-blue;   
+    display: flex;
+    justify-content: center;
+
+    &>div{
+        width: 100%;
+        max-width: 1850px;
+    } 
+}
+
+.productPage {
+    display: flex;
+    justify-content: center;
+    max-height: 700px;
+
+    &__productContainer{
+        width: 40%;
+        max-width: 600px;
+        height: 90%;
+        max-height: 560px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+
+        &__mainImage {
+            padding: 20px;
+            border-radius: 20px;
+            background-color: @light-blue-opacity;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            border: 1px solid @light-blue;
+
+            &>img{
+                width: 90%;
+                object-fit: cover;
+                height: auto;
+            }
+
+            &__thumbnailGallery {
+                margin-top: 20px;
+                .thumbnail {
+                    width: 50px;
+                    height: 50px;
+                    object-fit: cover;
+                    margin: 0 5px;
+                    cursor: pointer;
+                    border: 2px solid transparent;
+                }
+            }
+        }
+    }
+
+    &__productInfo {
+        height: 100%;
+        margin-left: 60px;
+        width: 50%;
+        color: white;
+        padding: 20px;
+        margin-top: 30px;
+
+        &__tags{
+            display: flex;
+            gap: 10px;
+            &>p{
+                font-size: 12px;
+                background-color: rgba(255,255,255,.3);
+                padding-inline: 10px;
+                padding-block: 3px;
+                border-radius: 5px;
+            }
+        }
+
+        &>h2{
+            font-size: 24px;
+            margin-block: 20px;
+        }
+
+        &__description{
+            margin-top: 20px;
+            margin-bottom: 60px;
+            width: 80%;
+            color: rgba(255,255,255,.5);
+        }
+
+        &__addCartContainer{
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            
+            &__price{
+                font-size: 24px;
+            }
+
+            input[type="button"]{
+                font-weight: bold;
+                cursor: pointer;
+                color: white;
+                width: 30%;
+                padding-inline: 20px;
+                padding-block: 10px;
+                border-radius: 20px;
+                background-color: @light-purple;
+                text-align: center;
+                &:hover{
+                    background-color: @light-red;
+                }
+            }
+        }
+
+        &__rating{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: @light-red;
+            &>img{
+                width: 20px;
+            }
+        }
+    }
+}
+

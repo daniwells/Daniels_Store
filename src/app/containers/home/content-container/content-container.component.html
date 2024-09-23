@@ -1,0 +1,20 @@
+<section class="contentContainer">
+    <app-pagination (dataSent)="receivePages($event)"></app-pagination>
+    <div class="contentContainer__productsList">
+        
+        <div *ngFor="let product of products" class="contentContainer__productsList__item" (click)="redirect('product/'+product.id)">
+
+            <p class="contentContainer__productsList__item__dicount">
+                {{product?.discountPercentage}}% Off
+            </p>
+            <div class="contentContainer__productsList__item__imageContainer">
+                <img *ngIf="product?.images && product.images.length > 0" [src]="product?.images[0]" alt="">
+            </div>
+            <p class="contentContainer__productsList__item__rating">
+                {{product?.rating}} <img src="icons/home/star.png" alt="">
+            </p>
+            <h3 class="contentContainer__productsList__item__title">{{product?.title}}</h3>
+            <p class="contentContainer__productsList__item__price">{{product?.price}} R$</p>
+        </div>
+    </div>
+</section>

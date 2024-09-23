@@ -1,0 +1,25 @@
+<div class="filtersContainer" >
+    <div class="filtersContainer__announcement">
+        <div></div>
+        <p>
+            Black Friday <br>
+            Week
+        </p>
+    </div>
+    <div class="filtersContainer__filters">
+        <h2>All Categories</h2>
+        <div>
+            <p class="filtersContainer__filters__class" (click)="filterByCategory('All')">
+                All
+            </p>
+            <div class="filtersContainer__filters__line"></div>
+        </div>
+        
+        <div *ngFor="let category of categories">
+            <p class="filtersContainer__filters__class" (click)="filterByCategory(category?.name)">
+                {{category?.name}}
+            </p>
+            <div class="filtersContainer__filters__line"></div>
+        </div>
+    </div>
+</div>

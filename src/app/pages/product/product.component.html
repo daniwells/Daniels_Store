@@ -1,0 +1,42 @@
+<main>
+    <div>
+        <app-navbar></app-navbar>
+        <div *ngIf="product">
+            <div class="productPage">
+                <div class="productPage__productContainer">
+                    <div class="productPage__productContainer__mainImage">
+                        <div class="productPage__productContainer__mainImage__thumbnailGallery">
+                            <img 
+                                *ngFor="let image of product.images" 
+                                [src]="image" 
+                                (click)="changeImage(image)" 
+                                [class.active]="image === selectedImage"
+                                class="thumbnail"
+                                >
+                        </div>
+                        <img  [src]="selectedImage" alt="{{ product.title }}">
+                    </div>
+                </div>
+                
+                <div class="productPage__productInfo">
+                    <div class="productPage__productInfo__tags">
+                        <p *ngFor="let tag of product.tags" >
+                            {{tag}}
+                        </p>
+                    </div>
+                    <h2>{{ product.title }}</h2>
+                    <p class="productPage__productInfo__rating">
+                        {{ product.rating }}
+                        <img src="icons/home/star.png" alt="">
+                    </p>
+                    <p class="productPage__productInfo__description" >{{ product.description }}</p>
+                    <div class="productPage__productInfo__addCartContainer">
+                        <p class="productPage__productInfo__addCartContainer__price">{{ product.price | currency }}</p>
+                        <input (click)="addToCart()" type="button" value="Add to cart">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+  

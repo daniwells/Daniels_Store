@@ -1,0 +1,25 @@
+@import '../../../styles.less';
+
+main{
+    min-height: 100vh;
+    background-color: @dark-blue;   
+    display: flex;
+    justify-content: center;
+
+    &>div{
+        width: 100%;
+        max-width: 1850px;
+    }
+}
+
+.products{
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 1920px){
+    .products{
+        padding-inline: 0px;
+    }
+}

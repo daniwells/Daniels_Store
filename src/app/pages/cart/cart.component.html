@@ -1,0 +1,51 @@
+<main>
+  <div>
+    <app-navbar></app-navbar>
+    <div class="cartContainer" >
+      <section class="cartContainer__cartItems">
+        <h2>Your cart</h2>
+        <p>You must checkout to complete the purchase</p>
+
+        <div *ngIf="cartItems.length > 0; else emptyCart">
+          <div *ngFor="let item of cartItems" class="cartContainer__cartItems__cartItem">
+            <img [src]="item.thumbnail" alt="{{ item.title }}" class="cartContainer__cartItems__cartItem__cartImage">
+            <div class="cartContainer__cartItems__cartItem__cartDetails">
+              <div class="cartContainer__cartItems__cartItem__cartDetails__desc" >
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.price | currency }}</p>
+              </div>
+
+              <div class="cartContainer__cartItems__cartItem__cartDetails__operations">
+                <button (click)="removeFromCart(item.id)">
+                  <img 
+                    src="icons/cart/lixo.png" 
+                    alt="trash"
+                    (mouseover)="hoverIcons($event.target,'icons/cart/lixo-hover.png')"
+                    (mouseout)="hoverIcons($event.target,'icons/cart/lixo.png')"
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <button class="cartContainer__cartItems__clearButton" (click)="clearCart()">Clear cart</button>
+        </div>
+
+        <ng-template #emptyCart>
+          <p>Seu carrinho está vazio.</p>
+        </ng-template>
+      </section>
+      <section class="cartContainer__checkout" >
+        <div class="cartContainer__checkout__details" >
+          <h3>Order details</h3>
+          <div class="cartContainer__checkout__details__line"></div>
+          <p>Amount <span>9</span></p>
+          <p>total <span>10 R$</span></p>
+        </div>
+        <div class="cartContainer__checkout__button" >
+          <input type="button" value="Checkout">
+        </div>
+      </section>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,16 @@
+<div class="carouselContainer">
+    <div
+      class="carouselContainer__imageADContainer"
+      [ngStyle]="{
+        'background-image': 'url(' + images[currentImageIndex] + ')'
+      }"
+    >
+      <div class="carouselContainer__imageADContainer__text">
+        <h1>Products</h1>
+        <p>Homepage / products</p>
+      </div>
+    </div>
+  
+    <button class="nav-button prev" (click)="prevImage()">&#10094;</button>
+    <button class="nav-button next" (click)="nextImage()">&#10095;</button>
+</div>

@@ -7,10 +7,13 @@
     </div>
     <div class="navbarContainer__searchSection">
         <input 
+            *ngIf="activeUrl == '/'"
             type="search" 
             name="search" 
             id="search" 
             placeholder="Search your preferred items here"
+            #searchInput
+            (input)="searchProduct(searchInput.value)"
         >
     </div>
     <div class="navbarContainer__navSection">
@@ -22,7 +25,7 @@
             (click)="redirect('/')"
         >
         <div class="navbarContainer__navSection__cartContainer">
-            <p>1</p>
+            <p>{{ itemsCart }}</p>
             <img 
                 src="icons/home/carrinho-de-compras.png" 
                 alt="Buy cart icon"

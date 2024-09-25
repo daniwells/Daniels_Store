@@ -18,8 +18,13 @@ import { FiltersProductsContainerComponent } from '../../containers/home/filters
 })
 export class HomeComponent {
   categoryCurrent: string = "";
+  searchProduct: string = ""; 
 
   receiveCategory(category: any){
     this.categoryCurrent = category; 
+  }
+
+  receiveSearchProduct(searchProduct: string){
+    this.searchProduct = searchProduct;
   }
 }

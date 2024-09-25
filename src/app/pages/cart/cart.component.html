@@ -32,14 +32,14 @@
         </div>
 
         <ng-template #emptyCart>
-          <p>Seu carrinho está vazio.</p>
+          <p>Your cart is empty.</p>
         </ng-template>
       </section>
       <section class="cartContainer__checkout" >
         <div class="cartContainer__checkout__details" >
           <h3>Order details</h3>
           <div class="cartContainer__checkout__details__line"></div>
-          <p>Amount <span>9</span></p>
+          <p>Amount <span>{{ amountItems }}</span></p>
           <p>total <span>10 R$</span></p>
         </div>
         <div class="cartContainer__checkout__button" >

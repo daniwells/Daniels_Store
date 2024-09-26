@@ -1,9 +1,8 @@
 <section class="contentContainer">
-    <app-pagination (dataSent)="receivePages($event)"></app-pagination>
-    <div class="contentContainer__productsList">
-        
-        <div *ngFor="let product of products" class="contentContainer__productsList__item" (click)="redirect('product/'+product.id)">
+    <app-pagination [totalPages]="totalPages" (dataSent)="receivePages($event)"></app-pagination>
 
+    <div class="contentContainer__productsList">
+        <div *ngFor="let product of products" class="contentContainer__productsList__item" (click)="redirect('product/'+product.id)">
             <p class="contentContainer__productsList__item__dicount">
                 {{product?.discountPercentage}}% Off
             </p>

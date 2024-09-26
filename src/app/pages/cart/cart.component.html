@@ -16,7 +16,7 @@
               </div>
 
               <div class="cartContainer__cartItems__cartItem__cartDetails__operations">
-                <button (click)="removeFromCart(item.id)">
+                <button (click)="removeFromCart(item.id, item.price)">
                   <img 
                     src="icons/cart/lixo.png" 
                     alt="trash"
@@ -40,7 +40,7 @@
           <h3>Order details</h3>
           <div class="cartContainer__checkout__details__line"></div>
           <p>Amount <span>{{ amountItems }}</span></p>
-          <p>total <span>10 R$</span></p>
+          <p>total <span>{{ totalPriceProducts }} R$</span></p>
         </div>
         <div class="cartContainer__checkout__button" >
           <input type="button" value="Checkout">

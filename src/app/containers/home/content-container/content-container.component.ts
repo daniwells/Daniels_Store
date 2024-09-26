@@ -14,7 +14,10 @@ import { ProductByTextService } from '../../../services/home/product-by-text/pro
 })
 export class ContentContainerComponent {
   products?: any = [{}];
-  productsPerPage: number = 30;
+  productsPerPage: number = this.presetProductsPerPage();
+  currentPage: number = 1;
+  totalPages: number = 196 ;
+  
   @Input() categoryCurrent: string = "";
   @Input() searchProduct: string = "";
 
@@ -24,8 +27,10 @@ export class ContentContainerComponent {
     private productByTextService: ProductByTextService
   ) {
     this.getProducts();
+    this.productsPerPage = this.presetProductsPerPage();
   }
 
+  
   ngOnChanges(changes: SimpleChanges, changeProduct: SimpleChanges): void {
     if (changes['categoryCurrent'] && changes['categoryCurrent'].currentValue) {
       if(this.categoryCurrent != "All"){
@@ -52,11 +57,12 @@ export class ContentContainerComponent {
   }
 
   getProducts(){
-    fetch(`https://dummyjson.com/products?limit=${this.productsPerPage}`)
+    const skip = (this.currentPage - 1) * this.productsPerPage;
+
+    fetch(`https://dummyjson.com/products?skip=${skip}&limit=${this.productsPerPage}`)
     .then(res => res.json())
     .then((data) => {
         this.products = data.products;
-        console.log(data.products)
       }
     );  
   }
@@ -76,8 +82,17 @@ export class ContentContainerComponent {
     this.router.navigate([url]);
   }
 
-  receivePages(pages: any) {
-    this.productsPerPage = pages;
+  presetProductsPerPage(){
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      return Number(localStorage.getItem('amountPages'));
+    }
+    return 10;
+  }
+
+  receivePages(pages: {'pages':number, 'currentPage':number}) {
+    this.productsPerPage = pages.pages;
+    this.currentPage = pages.currentPage;
+    
     this.getProducts();
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,12 +8,30 @@ import { CommonModule } from '@angular/common';
   templateUrl: './image-adcontainer.component.html',
   styleUrl: './image-adcontainer.component.less'
 })
-export class ImageADContainerComponent {
+export class ImageADContainerComponent implements OnInit, OnDestroy {
   images: string[] = [
     'images/home/imagesAD/1.png',
     'images/home/imagesAD/2.png',
     'images/home/imagesAD/3.png'
   ];
+  intervalId: any;
+
+  constructor(){
+  }
+
+  ngOnInit(): void {
+    this.startImageRotation();
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalId);
+  }
+
+  startImageRotation(): void {
+    this.intervalId = setInterval(() => {
+      this.nextImage();
+    }, 8000);
+  }
 
   currentImageIndex = 0;
 

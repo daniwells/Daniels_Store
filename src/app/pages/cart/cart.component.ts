@@ -13,14 +13,15 @@ import { NavbarComponent } from '../../components/global/navbar/navbar.component
 export class CartComponent implements OnInit {
   cartItems: any[] = [];
   amountItems: number = 0;
+  totalPriceProducts: string = '0';
 
   constructor(private cartService: CartService) {
     this.returnAmountItems();
+    this.returnTotalPriceItems();
   }
 
   returnAmountItems(){
-    let items = localStorage.getItem('cartItems');
-    
+    let items = localStorage.getItem("cartItems");
     if(items){
       let itemsObj = JSON.parse(items);
       this.amountItems = itemsObj.length;
@@ -29,18 +30,44 @@ export class CartComponent implements OnInit {
     }
   }
 
+  returnTotalPriceItems(){
+    let totalPrice = localStorage.getItem('totalPriceProducts');
+    
+    if(totalPrice){
+      let totalPriceObj = JSON.parse(totalPrice);
+      this.totalPriceProducts = totalPriceObj.toFixed(2);
+    }else{
+      this.totalPriceProducts = '0';
+    }
+  }
+
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
   }
 
-  removeFromCart(productId: number): void {
+  removeFromCart(productId: number, productPrice: number): void {
+    this.removeFromTotalPrice(productPrice);
     this.cartService.removeFromCart(productId);
     this.cartItems = this.cartService.getCartItems();
   }
 
+  removeFromTotalPrice(productPrice: number){
+    const totalPriceProductsStorage = Number(localStorage.getItem('totalPriceProducts'));
+    localStorage.setItem('totalPriceProducts', (totalPriceProductsStorage - productPrice).toString());
+
+    this.returnTotalPriceItems();
+  }
+
+  removeAllTotalPrice(){
+    localStorage.setItem('totalPriceProducts', '0');
+    this.returnTotalPriceItems();
+  }
+
   clearCart(): void {
+    this.removeAllTotalPrice();
     this.cartService.clearCart();
     this.cartItems = [];
+    this.returnAmountItems();
   }
 
   hoverIcons(component: any,path: string){

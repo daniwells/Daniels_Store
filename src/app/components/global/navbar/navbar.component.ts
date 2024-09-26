@@ -15,26 +15,28 @@ export class NavbarComponent {
   activeUrl: string = "/";
   itemsCart: number = 0;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-    let items = localStorage.getItem('cartItems');
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+
+  ngOnInit() {
+    this.activeUrl = this.router.url;
     
-    if(items){
-      let itemsObj = JSON.parse(items);
-      this.itemsCart = itemsObj.length;
-    }else{
-      this.itemsCart = 0;
+    if (typeof window !== 'undefined' && window.localStorage) {
+      let items = localStorage.getItem('cartItems');
+      
+      if (items) {
+        let itemsObj = JSON.parse(items);
+        this.itemsCart = itemsObj.length;
+      } else {
+        this.itemsCart = 0;
+      }
     }
   }
 
-  ngOnInit() {
-    this.activeUrl = this.router.url; 
-  }
-
-  hoverIcons(component: any,path: string){
+  hoverIcons(component: any, path: string) {
     component.src = path;
   }
 
-  redirect(url: string){
+  redirect(url: string) {
     this.router.navigate([url]);
   }
 

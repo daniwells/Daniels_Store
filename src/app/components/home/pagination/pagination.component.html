@@ -1,9 +1,45 @@
 <div class="contentContainer__pagination">
-    <p class="contentContainer__pagination__visualizationPages">Show {{ amountPages }} products</p>
+    <div class="pagination">
+        <button
+        class="pagination__prev"
+        (click)="handlePageChange(currentPage - 1)"
+        [disabled]="currentPage === 1"
+        >
+        Prev
+        </button>
+
+        <ul class="pagination__list">
+            <li class="pagination__list__item" *ngFor="let page of paginationItems">
+                <button
+                class="pagination__list__item__link"
+                [class.pagination__link--active]="currentPage === page"
+                (click)="handlePageChange(page)"
+                *ngIf="page !== '...'"
+                >
+                {{ page }}
+                </button>
+                <span class="pagination__list__item__divisionItem" *ngIf="page === '...'">...</span>
+            </li>
+        </ul>
+
+        <button
+        class="pagination__next"
+        (click)="handlePageChange(currentPage + 1)"
+        [disabled]="currentPage === lastPage"
+        >
+        Next
+        </button>
+    </div>
+
     <div class="contentContainer__pagination__selectPagesContainer">
-        <input class="contentContainer__pagination__selectPagesContainer__selectPages pages10" type="button" (click)="changePages(10)" value="10">
-        <input class="contentContainer__pagination__selectPagesContainer__selectPages pages30" type="button" (click)="changePages(30)" value="30">
-        <input class="contentContainer__pagination__selectPagesContainer__selectPages pages40" type="button" (click)="changePages(40)" value="40">
-        <input class="contentContainer__pagination__selectPagesContainer__selectPages pages50" type="button" (click)="changePages(50)" value="50">
+        <p class="contentContainer__pagination__selectPagesContainer__visualizationPages">Show {{ amountPages }} products</p>
+        <div class="contentContainer__pagination__selectPagesContainer__pagesItems">
+            <input class="contentContainer__pagination__selectPagesContainer__pagesItems__hoverPages pages10" type="button" (click)="changePages(10)" value="10" [ngClass]="{'selectedPage': amountPages === 10}">
+            <input class="contentContainer__pagination__selectPagesContainer__pagesItems__hoverPages pages30" type="button" (click)="changePages(30)" value="30" [ngClass]="{'selectedPage': amountPages === 30}">
+            <input class="contentContainer__pagination__selectPagesContainer__pagesItems__hoverPages pages40" type="button" (click)="changePages(40)" value="40" [ngClass]="{'selectedPage': amountPages === 40}">
+            <input class="contentContainer__pagination__selectPagesContainer__pagesItems__hoverPages pages50" type="button" (click)="changePages(50)" value="50" [ngClass]="{'selectedPage': amountPages === 50}">
+        </div>
     </div>
 </div>
+
+

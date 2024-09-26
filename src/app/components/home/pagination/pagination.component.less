@@ -7,24 +7,100 @@
     border: 1px solid @light-blue;
     color: rgba(255, 255, 255, 0.5);
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
     padding-inline: 20px;
 
+    
     &__selectPagesContainer{
-        margin-left: 20px;
-        &__selectPages{
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.5);
-            background-color: transparent;
-            padding: 10px;
-            border: .5px solid rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            margin-inline: 3px;
-            &:hover{
-                color: @light-purple;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+
+        &__pagesItems{
+            margin-left: 20px;
+            &__hoverPages{
+                font-size: 12px;
+                color: rgba(255, 255, 255, 0.5);
+                background-color: transparent;
+                padding: 10px;
+                border: .5px solid rgba(255, 255, 255, 0.5);
+                cursor: pointer;
+                margin-inline: 3px;
+                &:hover{
+                    color: @light-purple;
+                    border: .5px solid @light-purple;
+                }
+            }
+    
+            .selectedPage{
+                color: white;
                 border: .5px solid @light-purple;
+                background-color: @light-purple;
+            }    
+        }
+    }
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-family: Arial, sans-serif;
+    width: 50%;
+    height: 100%;
+
+    &__prev,
+    &__next {
+        background-color: transparent;
+        padding: 10px 15px;
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
+        border: .5px solid rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        
+        &:hover {
+            border-color: @light-purple;
+            color: @light-purple;
+        }
+    }
+
+    &__list {
+        display: flex;
+        list-style-type: none;
+        padding: 0;
+
+        &__item {
+            &__link {
+                cursor: pointer;
+                display: block;
+                padding: 10px 10px;
+                color: rgba(255, 255, 255, 0.5);
+                text-decoration: none;
+                border-radius: 5px;
+                background-color: transparent;
+
+                &:hover {
+                    color: @light-purple;
+                }
+
+                &--active {
+                    background-color: @light-purple;
+                    color: white;
+                    font-weight: bold;
+                }
+            }
+
+            &__divisionItem{
+                height: 80%;
+                display: flex;
+                align-items: end;
+
             }
         }
     }
 }
+
+

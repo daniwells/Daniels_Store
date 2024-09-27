@@ -6,6 +6,10 @@
         <app-input-login [type]="'text'" [formControl]="form.controls.username" [placeholder]="'Enter your username here'" [label]="'Username'"></app-input-login>
         <app-input-login [type]="'password'" [formControl]="form.controls.password" [placeholder]="'Enter your password here'" [label]="'Password'"></app-input-login>
 
+        <div *ngIf="error" class="containerLogin__form__error" >
+            <span>{{error}}</span>
+        </div>
+
         <div class="containerLogin__form__submitContainer" >
             <input (click)="logar()" type="submit" value="Login">
         </div>

@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   cartItems: any[] = [];
   amountItems: number = 0;
   totalPriceProducts: string = '0';
+  itemsCart: number = 999;
 
   constructor(private cartService: CartService) {
     this.returnAmountItems();
@@ -49,6 +50,12 @@ export class CartComponent implements OnInit {
     this.removeFromTotalPrice(productPrice);
     this.cartService.removeFromCart(productId);
     this.cartItems = this.cartService.getCartItems();
+
+    const cart = localStorage.getItem('cartItems');
+
+    if(cart){
+      this.itemsCart = JSON.parse(cart).length
+    }
   }
 
   removeFromTotalPrice(productPrice: number){
@@ -67,7 +74,7 @@ export class CartComponent implements OnInit {
     this.removeAllTotalPrice();
     this.cartService.clearCart();
     this.cartItems = [];
-    this.returnAmountItems();
+    this.returnAmountItems(); 
   }
 
   hoverIcons(component: any,path: string){

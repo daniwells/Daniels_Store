@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,10 +12,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class NavbarComponent {
   @Output() searchTerm = new EventEmitter<string>();
+  @Input() itemsCart: number = 0;
   activeUrl: string = "/";
-  itemsCart: number = 0;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.activeUrl = this.router.url;
@@ -44,5 +45,10 @@ export class NavbarComponent {
     if (text !== null && text !== undefined && text.trim() !== '') {
       this.searchTerm.emit(text);
     }
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }

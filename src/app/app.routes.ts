@@ -3,6 +3,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductComponent } from './pages/product/product.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { AuthGuard } from './guards/auth/auth.guard';
 
 export const routes: Routes = [
     {
@@ -11,14 +12,17 @@ export const routes: Routes = [
     },
     {
         path:"",
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: "product/:id",
-        component: ProductComponent
+        component: ProductComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: "cart",
-        component: CartComponent
+        component: CartComponent,
+        canActivate: [AuthGuard]
     }
 ];

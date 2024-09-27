@@ -33,7 +33,8 @@ export class ContainerLoginFormComponent {
       this.form.controls.password.value!
     ).subscribe({
       next: (val: LoginResponse) => {
-        this.resposta = val 
+        localStorage.setItem('token', val.token); 
+        this.resposta = val;
 
         if (val) { 
           this.router.navigate(['/']);

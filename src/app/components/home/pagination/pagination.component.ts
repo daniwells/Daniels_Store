@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnInit  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,15 +8,16 @@ import { CommonModule } from '@angular/common';
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.less'
 })
-export class PaginationComponent {
+export class PaginationComponent{
   @Output() dataSent = new EventEmitter<{'pages':number, 'currentPage':number}>();
-  amountPages: number = this.returnAmountPages();
-  currentPage: number = 1;
   @Input() totalPages: number = 196;
-  lastPage: number = this.calculateTotalPages();
+  amountPages: number = 10;
+  currentPage: number = 1;
+  lastPage: number = 19;
 
-  constructor() {
+  constructor(){
     this.amountPages = this.returnAmountPages();
+    this.lastPage = this.calculateTotalPages();
   }
 
   calculateTotalPages() {
@@ -27,17 +28,14 @@ export class PaginationComponent {
   }
 
   returnAmountPages(){
-    let pages = localStorage.getItem('amountPages');
-
+    let pages = localStorage.getItem("amountPages");
     if(pages){
-      let pagesObj = JSON.parse(pages);
-      return Number(pagesObj);
+      return Number(JSON.parse(pages))
     }
-    return this.amountPages = 10;
+    return 10;
   }
 
   sentPages(){
-    console.log(this.amountPages);
     this.dataSent.emit({'pages':this.amountPages, 'currentPage':this.currentPage});
   }
 
@@ -65,11 +63,13 @@ export class PaginationComponent {
       pages.push('...');
     }
 
-    for (let i = startPage; i < endPage; i++) {
-      pages.push(i);
+    for (let i = startPage; i <= endPage; i++) {
+      if(i < this.lastPage){
+        pages.push(i);
+      }
     }
 
-    if (endPage < this.lastPage - 1) {
+    if (endPage <= this.lastPage) {
       pages.push('...');
     }
 

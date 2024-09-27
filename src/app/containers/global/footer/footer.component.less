@@ -1,0 +1,40 @@
+@import "../../../../styles.less";
+
+.footerContainer{
+    height: 150px;
+    border: 1px solid @light-blue;
+    margin-bottom: 40px;
+    margin-inline: 40px;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__mission{
+        display: flex;
+        height: 100%;
+        align-items: center;
+
+        p{
+            color: white;
+        }
+    }
+
+    &__socialMedia{
+        display: flex;
+        gap: 20px;
+        margin-right: 20px;
+        color: white;
+        
+        img{
+            width: 20px;
+        }
+    }
+}
+
+@media screen and (min-width: 1920px){
+    .footerContainer{
+        margin-inline: 0px;
+    }
+}

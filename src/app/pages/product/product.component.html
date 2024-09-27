@@ -2,10 +2,9 @@
     <app-popup-success [showPopup]="isPopupVisible" (closePopup)="isPopupVisible=false">
         <h2 class="titlePopup" >Product added to cart!</h2>
         <p>You can access your products to buy from the navigation bar.</p>
-        
     </app-popup-success>
     <div>
-        <app-navbar></app-navbar>
+        <app-navbar [itemsCart]="itemsCart" ></app-navbar>
         <div *ngIf="product">
             <div class="productPage">
                 <div class="productPage__productContainer">

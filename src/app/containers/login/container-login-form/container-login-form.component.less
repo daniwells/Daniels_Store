@@ -1,3 +1,5 @@
+@import "../../../../styles.less"; 
+
 .containerLogin{
     position: absolute;
     right: 0;
@@ -37,7 +39,13 @@
             }
         }
 
-        .containerLogin__form__submitContainer{
+        &__error{
+            display: flex;
+            justify-content: center;
+            color: @light-red;
+        }
+
+        &__submitContainer{
             display: flex;
             justify-content: center;
             

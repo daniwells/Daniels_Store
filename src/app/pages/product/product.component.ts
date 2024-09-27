@@ -18,6 +18,7 @@ export class ProductComponent implements OnInit {
   selectedImage: string = "";
   itemsPerPage: number = 10;
   isPopupVisible: boolean = false;
+  itemsCart: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -44,6 +45,12 @@ export class ProductComponent implements OnInit {
     this.cartService.addToCart(this.product);
     this.isPopupVisible = true;
     this.addPriceToStorage();
+
+    const cart = localStorage.getItem('cartItems');
+
+    if(cart){
+      this.itemsCart = JSON.parse(cart).length
+    }
   }
 
   addPriceToStorage(): void {

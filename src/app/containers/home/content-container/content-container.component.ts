@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PaginationComponent } from '../../../components/home/pagination/pagination.component';
@@ -12,9 +12,9 @@ import { ProductByTextService } from '../../../services/home/product-by-text/pro
   templateUrl: './content-container.component.html',
   styleUrl: './content-container.component.less'
 })
-export class ContentContainerComponent {
+export class ContentContainerComponent implements OnInit {
   products?: any = [{}];
-  productsPerPage: number = this.presetProductsPerPage();
+  productsPerPage: number = 10;
   currentPage: number = 1;
   totalPages: number = 196 ;
   
@@ -25,11 +25,12 @@ export class ContentContainerComponent {
     private router: Router, 
     private productService: ProductByCategoryService,
     private productByTextService: ProductByTextService
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.getProducts();
     this.productsPerPage = this.presetProductsPerPage();
   }
-
   
   ngOnChanges(changes: SimpleChanges, changeProduct: SimpleChanges): void {
     if (changes['categoryCurrent'] && changes['categoryCurrent'].currentValue) {
@@ -59,12 +60,12 @@ export class ContentContainerComponent {
   getProducts(){
     const skip = (this.currentPage - 1) * this.productsPerPage;
 
-    fetch(`https://dummyjson.com/products?skip=${skip}&limit=${this.productsPerPage}`)
+    fetch(`https://dummyjson.com/products?skip=${skip}&limit=${this.productsPerPage ? this.productsPerPage : 10}`)
     .then(res => res.json())
     .then((data) => {
         this.products = data.products;
       }
-    );  
+    );
   }
 
   getProductsByText(text: string) {
@@ -83,9 +84,11 @@ export class ContentContainerComponent {
   }
 
   presetProductsPerPage(){
-    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
-      return Number(localStorage.getItem('amountPages'));
-    }
+    // if (typeof window !== 'undefined') {
+    //   if(localStorage.getItem('amountPages')){
+    //     return Number(localStorage.getItem('amountPages'));  
+    //   }
+    // }
     return 10;
   }
 

@@ -3,6 +3,7 @@ import { NavbarComponent } from '../../components/global/navbar/navbar.component
 import { ImageADContainerComponent } from '../../containers/home/image-adcontainer/image-adcontainer.component';
 import { ContentContainerComponent } from '../../containers/home/content-container/content-container.component';
 import { FiltersProductsContainerComponent } from '../../containers/home/filters-products-container/filters-products-container.component';
+import { FooterComponent } from '../../containers/global/footer/footer.component';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ import { FiltersProductsContainerComponent } from '../../containers/home/filters
     NavbarComponent, 
     ImageADContainerComponent,  
     ContentContainerComponent,
-    FiltersProductsContainerComponent
+    FiltersProductsContainerComponent,
+    FooterComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.less'

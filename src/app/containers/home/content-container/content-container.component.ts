@@ -84,11 +84,6 @@ export class ContentContainerComponent implements OnInit {
   }
 
   presetProductsPerPage(){
-    // if (typeof window !== 'undefined') {
-    //   if(localStorage.getItem('amountPages')){
-    //     return Number(localStorage.getItem('amountPages'));  
-    //   }
-    // }
     return 10;
   }
 

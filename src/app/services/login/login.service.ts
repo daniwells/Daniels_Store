@@ -31,6 +31,8 @@ export class LoginService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    if (typeof window !== 'undefined' && typeof window.localStorage !== 'undefined') {
+      localStorage.removeItem('token');
+    }
   }
 }

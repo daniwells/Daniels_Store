@@ -20,7 +20,6 @@ export class NavbarComponent {
 
   ngOnInit() {
     this.activeUrl = this.router.url;
-    
     if (typeof window !== 'undefined' && window.localStorage) {
       let items = localStorage.getItem('cartItems');
       
@@ -48,7 +47,9 @@ export class NavbarComponent {
   }
 
   logout(){
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.removeItem('token');
+      this.router.navigate(['/login']);  
+    }
   }
 }

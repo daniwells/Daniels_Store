@@ -33,13 +33,14 @@ export class ContainerLoginFormComponent {
       this.form.controls.password.value!
     ).subscribe({
       next: (val: LoginResponse) => {
-        localStorage.setItem('token', val.token); 
-        this.resposta = val;
+        if (typeof window !== 'undefined' && typeof window.localStorage !== 'undefined') {
+          localStorage.setItem('token', val.token); 
+          this.resposta = val;
 
-        if (val) { 
-          this.router.navigate(['/']);
+          if (val) { 
+            this.router.navigate(['/']);
+          }
         }
-        
       },
       error: (err) => {
         this.error = "Incorrect email or password!";

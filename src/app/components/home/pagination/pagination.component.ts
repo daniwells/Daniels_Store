@@ -28,9 +28,11 @@ export class PaginationComponent{
   }
 
   returnAmountPages(){
-    let pages = localStorage.getItem("amountPages");
-    if(pages){
-      return Number(JSON.parse(pages))
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      let pages = localStorage.getItem("amountPages");
+      if(pages){
+        return Number(JSON.parse(pages))
+      }  
     }
     return 10;
   }
@@ -40,12 +42,13 @@ export class PaginationComponent{
   }
 
   changePages(pages: number){
-    this.currentPage = 1;
-    this.amountPages = pages;
-    this.sentPages();
-    this.lastPage = this.calculateTotalPages();
-    
-    localStorage.setItem('amountPages', pages.toString());
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      this.currentPage = 1;
+      this.amountPages = pages;
+      this.sentPages();
+      this.lastPage = this.calculateTotalPages();
+      localStorage.setItem('amountPages', pages.toString());
+    }
   }
 
   handlePageChange(page: string | number) {

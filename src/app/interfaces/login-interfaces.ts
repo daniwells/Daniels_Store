@@ -7,10 +7,3 @@ export interface LoginResponse {
       image: string;
     }
 }
-
-// export interface LoginResponse {
-//     email: string;
-//     firstName: string;
-//     lastName: string;
-//     image: string;
-// }

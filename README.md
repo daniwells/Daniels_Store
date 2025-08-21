@@ -26,10 +26,9 @@ No terminal, primeiro selecione um diretório o qual você irá adicionar o proj
 #### 🔴 2. Instalar dependências
 Certifique-se de possuir o NPM e o Node configurados. Na raiz do proejeto navegue até o diretório frontend e realize a instalação das dependências.
 
-    cd frontend
     npm install
 
-#### 🔴 4. Executar localhot
+#### 🔴 3. Executar localhot
 Depois de tudo, você pode executar o sistema, então garanta que esteja na raiz do projeto e execute o comando:
 
     ng serve --open
@@ -39,3 +38,4 @@ Com isso você pode conferir o site em execução localhost.
 ## Licença :page_with_curl:
 
 O sistema Daniel's Store está sob a licença [MIT LICENSE](LICENCE).
+
